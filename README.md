@@ -186,4 +186,15 @@ output {
 }
 
 ```
+### Kibana
+[link](https://www.elastic.co/products/kibana)
 
+Telepítés: **cinst Kibana**
+
+konfiguráció: C:\ProgramData\chocolatey\lib\kibana\kibana-4.5.4-windows\config\kibana.yml
+
+Kibana szervízként telepítése (Az [NSSM](https://nssm.cc/)-et használjuk, hogy szervízként tudjunk egy batch file-t indítani):
+
+**nssm install Kibana**
+
+majd a **Path** mezőbe: **C:\ProgramData\chocolatey\lib\kibana\kibana-4.5.4-windows\bin\kibana.bat**
