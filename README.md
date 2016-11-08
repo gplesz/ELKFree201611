@@ -137,3 +137,50 @@ Végül az ELK szerver tűzfalán engedélyezzük az 5672-es TCP portot:
 **netsh advfirewall firewall add rule name="Open Port 5672" dir=in action=allow protocol=TCP localport=5672**
 
 ### LogStash
+[link](https://www.elastic.co/products/logstash)
+
+telepítés: **cinst logstash**
+
+a c:\logstash könyvtárba kerül eztán. Itt a .\bin könyvtárban van a futtató logstash.bat, és a .\conf.d-ben pedig a konfiguráció.
+
+
+A bin könyvtárban állva a ologstash -f ..\conf.d\neta.conf paranccsal indítottuk el, és a neta.conf állomány tartalma a következő:
+
+```
+input {
+	rabbitmq {
+		type => "RabbitMQ"
+		codec    => "json"
+		host => "localhost"
+		user     => "netacademia"
+		password => "neta"
+		queue    => "app-logging-queue-central"
+		durable => true
+
+		ack => true
+		auto_delete => false
+		exclusive => false
+		key => "logstash"
+		passive => false
+		port => 5672
+		prefetch_count => 256
+		ssl => false
+		threads => 1
+		vhost => "/"		
+	}
+}
+
+output {
+	elasticsearch {
+		codec => "plain"
+		hosts => "localhost"
+		index => "logstash-%{+YYYY.MM.dd}"
+	}
+	
+	stdout {
+		codec => "rubydebug"
+	}
+}
+
+```
+
