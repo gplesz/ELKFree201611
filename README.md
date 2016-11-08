@@ -136,3 +136,4 @@ Végül az ELK szerver tűzfalán engedélyezzük az 5672-es TCP portot:
 
 **netsh advfirewall firewall add rule name="Open Port 5672" dir=in action=allow protocol=TCP localport=5672**
 
+### LogStash
