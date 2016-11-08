@@ -128,8 +128,9 @@ Készítünk az app szerveren egy **app-logging-exchange** nevű exchange-et, il
 
 Az APP szerveren készítünk egy lapátot (admin/shovel management menüpont), ami áttolja az üzeneteket az ELK szerver queue-jába. A shovel adatai:
 
-forrás url: amqp://netacademia:neta@localhost, forrás queue: app-logging-queue
-cél url: amqp://netacademia:neta@192.168.147.129, cél queue: app-logging-queue-central
+forrás url: **amqp://netacademia:neta@localhost**, forrás queue: **app-logging-queue**
+
+cél url: **amqp://netacademia:neta@192.168.147.129**, cél queue: **app-logging-queue-central**
 
 Végül az ELK szerver tűzfalán engedélyezzük az 5672-es TCP portot:
 
