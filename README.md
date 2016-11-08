@@ -52,7 +52,7 @@ A [YAML](http://www.yaml.org/) egy emberi fogyasztásra alkalmas, a JSON formáz
 
 telepítjük a curl-t: **cinst curl** majd: **curl http://localhost:9200** és válaszol:
 
-´´´json
+```json
 {
   "name" : "Vindaloo",
   "cluster_name" : "elasticsearch",
@@ -65,7 +65,7 @@ telepítjük a curl-t: **cinst curl** majd: **curl http://localhost:9200** és v
   },
   "tagline" : "You Know, for Search"
 }
-´´´
+```
 
 Az ElasticSearch egy 2.3.1, amit a chocolatey feltesz. A [legújabb itt most az 5.0](https://www.elastic.co/downloads/elasticsearch), letölt, kicsomagol, futtat. Kell neki JAVA, JAVA_HOME beállítás és ennyi.
 
@@ -76,8 +76,8 @@ Telepítésük:
 Elnavigálunk az Elasticsearch bin könyvtárába: C:\ProgramData\chocolatey\lib\elasticsearch\tools\elasticsearch-2.3.1\bin majd kérünk egy cmd-t. Itt pedig: **plugin install lmenezes/elasticsearch-kopf** telepíti a Kopf-ot, a **plugin install royrusso/elasticsearch-HQ** telepíti a HQ-t. Elérni itt lehet őket: [kopf](http://localhost:9200/_plugin/kopf) illetve [HQ](http://localhost:9200/_plugin/HQ)
 
 ### RabbitMQ
-[link](https://www.rabbitmq.com)
-[Gyors tutorial](https://www.rabbitmq.com/tutorials/tutorial-four-python.html)
+ - [link](https://www.rabbitmq.com)
+ - [Gyors tutorial](https://www.rabbitmq.com/tutorials/tutorial-four-python.html)
 
 [Nyílt forráskódú](https://github.com/rabbitmq/rabbitmq-server), [Erlang](https://www.erlang.org/) nyelven írt ingyenes üzenettovábbító alkalmazás. Arra való, hogy a közvetlen hálózati kapcsolódást a segítségével ki lehet váltani. Ha nincs kapcsolat a csomagok gyűlnek a várakozósorban, ha van kapcsolat, akkor meg továbbítódnak. 
 
@@ -88,12 +88,12 @@ Fontos tudni, hogy a RabbitMQ az plain textet használ. Viszont képes ssl-t has
 Miután lefutott a **cinst rabbitmq** itt lehet a webes kezelőt elérni: http://localhost:15672/. A chocolatey telepíti a management pluginokat: 
 
 The following plugins have been enabled:
-  mochiweb
-  webmachine
-  rabbitmq_web_dispatch
-  amqp_client
-  rabbitmq_management_agent
-  rabbitmq_management
+ - mochiweb
+ - webmachine
+ - rabbitmq_web_dispatch
+ - amqp_client
+ - rabbitmq_management_agent
+ - rabbitmq_management
   
 ami így már azonnal használható, ha kézzel telepítünk rabbitmq-t, akkor ezt nekünk kell felhúzni.
 
