@@ -36,4 +36,4 @@ Az elasticsearch [nyílt forráskódú](https://github.com/elastic/elasticsearch
 
 A telepítés a chocolatey csomagkezelővel a következő (Adminisztrátori parancssorból): **cinst elasticsearch**
 
-
+Telepítés után be kell állítani a **JAVA_HOME** környezeti változót, admin paracssorból pl. így: **setx JAVA_HOME "C:\Program Files\Java\jre1.8.0_111" /M**
