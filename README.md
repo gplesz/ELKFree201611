@@ -37,3 +37,7 @@ Az elasticsearch [nyílt forráskódú](https://github.com/elastic/elasticsearch
 A telepítés a chocolatey csomagkezelővel a következő (Adminisztrátori parancssorból): **cinst elasticsearch**
 
 Telepítés után be kell állítani a **JAVA_HOME** környezeti változót, admin paracssorból pl. így: **setx JAVA_HOME "C:\Program Files\Java\jre1.8.0_111" /M**
+
+Amit még érdemes elmondani: mivel java, fut windowson, linuxon, osx-en. Nagyon jól skálázható: több száz gépes fürtöket is használnak probléma nélkül. Alapértelmezésben elindul, és kiszolgál minket a localhost:9200-on.
+
+A beállításai itt találhatóak: C:\ProgramData\chocolatey\lib\elasticsearch\tools\elasticsearch-2.3.1\config\elasticsearch.yml és logging.yml.
