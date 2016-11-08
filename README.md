@@ -22,7 +22,7 @@ Telepítéshez ezt másoljuk a vágólapra az oldalról:
 @powershell -NoProfile -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"
 
 3. telepítünk [elasticsearch](https://www.elastic.co/) szervert az ELK szerverünkre.
-Az elasticsearch [nyílt forráskódú](https://github.com/elastic/elasticsearch) java-ban készült document szerver. A teljes szöveges keresésre optimalizálva.
+Az elasticsearch [nyílt forráskódú](https://github.com/elastic/elasticsearch) java-ban készült document szerver. [Lucene-re épül az adatbázis](http://lucene.apache.org/core/), a teljes szöveges keresésre optimalizálva.
 
 [GitHub teljes szöveges keresése ebben zajlik](http://www.elasticsearch.org/case-study/github/)
 
@@ -45,6 +45,33 @@ A beállításai itt találhatóak: C:\ProgramData\chocolatey\lib\elasticsearch\
 ezt megnyitni leginkább notepad++-ból érdemes: **cinst notepadplusplus**
 
 A [YAML](http://www.yaml.org/) egy emberi fogyasztásra alkalmas, a JSON formázás kiváltására készült formázónyelv. [Wikipédia](https://en.wikipedia.org/wiki/YAML)
+
+telepítjük a curl-t: **cinst curl** majd: **curl http://localhost:9200** és válaszol:
+
+´´´json
+{
+  "name" : "Vindaloo",
+  "cluster_name" : "elasticsearch",
+  "version" : {
+    "number" : "2.3.1",
+    "build_hash" : "bd980929010aef404e7cb0843e61d0665269fc39",
+    "build_timestamp" : "2016-04-04T12:25:05Z",
+    "build_snapshot" : false,
+    "lucene_version" : "5.5.0"
+  },
+  "tagline" : "You Know, for Search"
+}
+´´´
+
+Az ElasticSearch egy 2.3.1, amit a chocolatey feltesz. A [legújabb itt most az 5.0](https://www.elastic.co/downloads/elasticsearch), letölt, kicsomagol, futtat. Kell neki JAVA, JAVA_HOME beállítás és ennyi.
+
+A kezeléséhez plugin-t lehet telepíteni. Például a [kopf](https://github.com/lmenezes/elasticsearch-kopf) és a [HQ](http://www.elastichq.org/).
+
+Telepítésük: 
+
+Elnavigálunk az Elasticsearch bin könyvtárába: C:\ProgramData\chocolatey\lib\elasticsearch\tools\elasticsearch-2.3.1\bin majd kérünk egy cmd-t. Itt pedig: **plugin install lmenezes/elasticsearch-kopf** telepíti a Kopf-ot, a **plugin -install royrusso/elasticsearch-HQ** telepíti a HQ-t. Elérni itt lehet őket: [kopf](http://localhost:9200/_plugin/kopf) illetve [HQ](http://localhost:9200/_plugin/HQ)
+
+
 
 
 
