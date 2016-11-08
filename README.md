@@ -11,17 +11,21 @@ A VMWare Windows 10-re telepítéséhez lehet, hogy  [le kell tiltani a Credenti
 
 Délelőtt még erről itt egy részletes leírást készítek, hogy a 13:00-as kezdésre mindenki fel tudjon készülni.
 
-1. A letöltött virtuális gépeket kicsomagoljuk, és a Windows-osból másolunk egy másodikat. A .vmx állományra kattintunk mindegyik könyvtárban (w2k12r2-1, w2k12r2-2, UbuntuBase64), így elindul a három virtuális gép. (A VMWare player telepítve kell, hogy legyen a gépen)
+## Előkészületek
+### Kicsomagolás, stb. 
+A letöltött virtuális gépeket kicsomagoljuk, és a Windows-osból másolunk egy másodikat. A .vmx állományra kattintunk mindegyik könyvtárban (w2k12r2-1, w2k12r2-2, UbuntuBase64), így elindul a három virtuális gép. (A VMWare player telepítve kell, hogy legyen a gépen)
 
 Belépés a windows szerverekbe: Administrator jelszó: Windows2012
 Belépés a Ubuntu szerverre: név: netacademia, jelszó: neta
 
-2. Csomagkezelőt telepítünk: [chocolatey.org](https://chocolatey.org/)
+### Csomagkezelő
+Csomagkezelőt telepítünk: [chocolatey.org](https://chocolatey.org/)
 
 Telepítéshez ezt másoljuk a vágólapra az oldalról: 
 @powershell -NoProfile -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"
 
-3. telepítünk [elasticsearch](https://www.elastic.co/) szervert az ELK szerverünkre.
+### ElsaticSearch Szerver
+telepítünk [elasticsearch](https://www.elastic.co/) szervert az ELK szerverünkre.
 Az elasticsearch [nyílt forráskódú](https://github.com/elastic/elasticsearch) java-ban készült document szerver. [Lucene-re épül az adatbázis](http://lucene.apache.org/core/), a teljes szöveges keresésre optimalizálva.
 
 [GitHub teljes szöveges keresése ebben zajlik](http://www.elasticsearch.org/case-study/github/)
@@ -69,7 +73,38 @@ A kezeléséhez plugin-t lehet telepíteni. Például a [kopf](https://github.co
 
 Telepítésük: 
 
-Elnavigálunk az Elasticsearch bin könyvtárába: C:\ProgramData\chocolatey\lib\elasticsearch\tools\elasticsearch-2.3.1\bin majd kérünk egy cmd-t. Itt pedig: **plugin install lmenezes/elasticsearch-kopf** telepíti a Kopf-ot, a **plugin -install royrusso/elasticsearch-HQ** telepíti a HQ-t. Elérni itt lehet őket: [kopf](http://localhost:9200/_plugin/kopf) illetve [HQ](http://localhost:9200/_plugin/HQ)
+Elnavigálunk az Elasticsearch bin könyvtárába: C:\ProgramData\chocolatey\lib\elasticsearch\tools\elasticsearch-2.3.1\bin majd kérünk egy cmd-t. Itt pedig: **plugin install lmenezes/elasticsearch-kopf** telepíti a Kopf-ot, a **plugin install royrusso/elasticsearch-HQ** telepíti a HQ-t. Elérni itt lehet őket: [kopf](http://localhost:9200/_plugin/kopf) illetve [HQ](http://localhost:9200/_plugin/HQ)
+
+### RabbitMQ
+[link](https://www.rabbitmq.com)
+[Gyors tutorial](https://www.rabbitmq.com/tutorials/tutorial-four-python.html)
+
+[Nyílt forráskódú](https://github.com/rabbitmq/rabbitmq-server), [Erlang](https://www.erlang.org/) nyelven írt ingyenes üzenettovábbító alkalmazás. Arra való, hogy a közvetlen hálózati kapcsolódást a segítségével ki lehet váltani. Ha nincs kapcsolat a csomagok gyűlnek a várakozósorban, ha van kapcsolat, akkor meg továbbítódnak. 
+
+Az Erlang is nyílt forráskódú, és multiplatformos. Az Actor model egyik implementációja.
+
+Fontos tudni, hogy a RabbitMQ az plain textet használ. Viszont képes ssl-t használni, csak be kell állítani.
+
+Miután lefutott a **cinst rabbitmq** itt lehet a webes kezelőt elérni: http://localhost:15672/. A chocolatey telepíti a management pluginokat: 
+
+The following plugins have been enabled:
+  mochiweb
+  webmachine
+  rabbitmq_web_dispatch
+  amqp_client
+  rabbitmq_management_agent
+  rabbitmq_management
+  
+ami így már azonnal használható, ha kézzel telepítünk rabbitmq-t, akkor ezt nekünk kell felhúzni.
+
+De ahhoz, hogy használjuk, kell felhasználó is:
+
+Ide navigálunk: **C:\Program Files\RabbitMQ Server\rabbitmq_server-3.6.5\sbin** majd a következő parancsokat adjuk:
+
+**rabbitmqctl add_user netacademia neta** (felveszünk egy felhasználót)
+**rabbitmqctl set_user_tags netacademia administrator** (a felhasználót adminisztrátorrá tesszük)
+**rabbitmqctl set_permissions -p / netacademia ".*" ".*" ".*"** (engedélyezzük a gyökér virtuális könyvtárat)
+
 
 
 
