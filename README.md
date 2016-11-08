@@ -205,4 +205,5 @@ majd elindítjuk a szervizt: **nssm start Kibana**
 
 http://localhost:5601
 
+Itt létre kell hoznunk a Kibana beállításait rögzítő elasticsearch "indexet", ami ha mindent jól csináltunk, akkor egy zöld Create gomb megnyomásával elkészül. Ezt követően a Discover menüpont használatával látjuk a naplóbejegyzéseket.
 
