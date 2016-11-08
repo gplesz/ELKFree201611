@@ -22,7 +22,7 @@ Belépés a Ubuntu szerverre: név: netacademia, jelszó: neta
 Csomagkezelőt telepítünk: [chocolatey.org](https://chocolatey.org/)
 
 Telepítéshez ezt másoljuk a vágólapra az oldalról: 
-@powershell -NoProfile -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"
+**@powershell -NoProfile -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"**
 
 ### ElsaticSearch Szerver
 telepítünk [elasticsearch](https://www.elastic.co/) szervert az ELK szerverünkre.
@@ -40,7 +40,9 @@ Az elasticsearch [nyílt forráskódú](https://github.com/elastic/elasticsearch
 
 A telepítés a chocolatey csomagkezelővel a következő (Adminisztrátori parancssorból): **cinst elasticsearch**
 
-Telepítés után be kell állítani a **JAVA_HOME** környezeti változót, admin paracssorból pl. így: **setx JAVA_HOME "C:\Program Files\Java\jre1.8.0_111" /M**
+Telepítés után be kell állítani a **JAVA_HOME** környezeti változót, admin paracssorból pl. így: 
+
+**setx JAVA_HOME "C:\Program Files\Java\jre1.8.0_111" /M**
 
 Amit még érdemes elmondani: mivel java, fut windowson, linuxon, osx-en. Nagyon jól skálázható: több száz gépes fürtöket is használnak probléma nélkül. Alapértelmezésben elindul, és kiszolgál minket a localhost:9200-on.
 
@@ -81,7 +83,7 @@ Elnavigálunk az Elasticsearch bin könyvtárába: C:\ProgramData\chocolatey\lib
 
 [Nyílt forráskódú](https://github.com/rabbitmq/rabbitmq-server), [Erlang](https://www.erlang.org/) nyelven írt ingyenes üzenettovábbító alkalmazás. Arra való, hogy a közvetlen hálózati kapcsolódást a segítségével ki lehet váltani. Ha nincs kapcsolat a csomagok gyűlnek a várakozósorban, ha van kapcsolat, akkor meg továbbítódnak. 
 
-Az Erlang is nyílt forráskódú, és multiplatformos. Az Actor model egyik implementációja.
+Az Erlang is [nyílt forráskódú](https://github.com/erlang/otp), és multiplatformos. Az [Actor model](http://www.brianstorti.com/the-actor-model/) egyik implementációja.
 
 Fontos tudni, hogy a RabbitMQ az plain textet használ. Viszont képes ssl-t használni, csak be kell állítani.
 
