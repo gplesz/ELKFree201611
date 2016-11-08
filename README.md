@@ -22,6 +22,7 @@ Belépés a Ubuntu szerverre: név: netacademia, jelszó: neta
 Csomagkezelőt telepítünk: [chocolatey.org](https://chocolatey.org/)
 
 Telepítéshez ezt másoljuk a vágólapra az oldalról: 
+
 **@powershell -NoProfile -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"**
 
 ### ElsaticSearch Szerver
