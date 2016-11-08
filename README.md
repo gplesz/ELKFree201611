@@ -193,8 +193,16 @@ Telepítés: **cinst Kibana**
 
 konfiguráció: C:\ProgramData\chocolatey\lib\kibana\kibana-4.5.4-windows\config\kibana.yml
 
-Kibana szervízként telepítése (Az [NSSM](https://nssm.cc/)-et használjuk, hogy szervízként tudjunk egy batch file-t indítani):
+Kibana szervízként telepítése (Az [NSSM](https://nssm.cc/)-et használjuk, hogy szervizként tudjunk egy batch file-t indítani):
 
 **nssm install Kibana**
 
 majd a **Path** mezőbe: **C:\ProgramData\chocolatey\lib\kibana\kibana-4.5.4-windows\bin\kibana.bat**
+
+majd elindítjuk a szervizt: **nssm start Kibana**
+
+És itt hozzá is férünk az alkalmazáshoz:
+
+http://localhost:5601
+
+
