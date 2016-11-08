@@ -41,3 +41,11 @@ Telepítés után be kell állítani a **JAVA_HOME** környezeti változót, adm
 Amit még érdemes elmondani: mivel java, fut windowson, linuxon, osx-en. Nagyon jól skálázható: több száz gépes fürtöket is használnak probléma nélkül. Alapértelmezésben elindul, és kiszolgál minket a localhost:9200-on.
 
 A beállításai itt találhatóak: C:\ProgramData\chocolatey\lib\elasticsearch\tools\elasticsearch-2.3.1\config\elasticsearch.yml és logging.yml.
+
+ezt megnyitni leginkább notepad++-ból érdemes: **cinst notepadplusplus**
+
+A [YAML](http://www.yaml.org/) egy emberi fogyasztásra alkalmas, a JSON formázás kiváltására készült formázónyelv. [Wikipédia](https://en.wikipedia.org/wiki/YAML)
+
+
+
+
