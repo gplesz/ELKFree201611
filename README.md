@@ -128,5 +128,7 @@ Az APP szerveren készítünk egy lapátot (admin/shovel management menüpont), 
 forrás url: amqp://netacademia:neta@localhost, forrás queue: app-logging-queue
 cél url: amqp://netacademia:neta@192.168.147.129, cél queue: app-logging-queue-central
 
+Végül az ELK szerver tűzfalán engedélyezzük az 5672-es TCP portot:
 
+**netsh advfirewall firewall add rule name="Open Port 5672" dir=in action=allow protocol=TCP localport=5672**
 
