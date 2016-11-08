@@ -105,6 +105,20 @@ Ide navigálunk: **C:\Program Files\RabbitMQ Server\rabbitmq_server-3.6.5\sbin**
 **rabbitmqctl set_user_tags netacademia administrator** (a felhasználót adminisztrátorrá tesszük)
 **rabbitmqctl set_permissions -p / netacademia ".*" ".*" ".*"** (engedélyezzük a gyökér virtuális könyvtárat)
 
+Ezzel be tudunk lépni a felületről az előző linken neacademia/neta név/jelszó párral. Majd készítünk egy queue-t alapértelmezett értékekkel, ezzel a névvel: **app-logging-queue-central**
+
+Az APP szerverünkön is telepítünk egy RabbitMQ szervert (**cinst rabbitmq**), majd ott is felvesszük ugyanazt a felhasználót és jogot adunk neki.
+
+**rabbitmqctl add_user netacademia neta** (felveszünk egy felhasználót)
+**rabbitmqctl set_user_tags netacademia administrator** (a felhasználót adminisztrátorrá tesszük)
+**rabbitmqctl set_permissions -p / netacademia ".*" ".*" ".*"** (engedélyezzük a gyökér virtuális könyvtárat)
+
+Ezt követően engedélyezzük a lapátoló plugint, ami az üzeneteket az egyik queue-ból egy másik queue-ba továbbítja. 
+
+**rabbitmq-plugins enable rabbitmq_shovel** (engedélyezzük a lapátoló [shovel](https://www.rabbitmq.com/shovel-dynamic.html) plugint)
+**rabbitmq-plugins enable rabbitmq_shovel_management** (engedélyezzük a plugin adminisztrációját)
+
+
 
 
 
