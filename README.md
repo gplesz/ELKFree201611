@@ -147,6 +147,7 @@ a c:\logstash könyvtárba kerül eztán. Itt a .\bin könyvtárban van a futtat
 A bin könyvtárban állva a ologstash -f ..\conf.d\neta.conf paranccsal indítottuk el, és a neta.conf állomány tartalma a következő:
 
 ```
+#a bemenet definíciója, ami RabbitMQ-ból jön
 input {
 	rabbitmq {
 		type => "RabbitMQ"
@@ -170,13 +171,15 @@ input {
 	}
 }
 
+#A kimenet
 output {
+	#egyrészt megy a bejegyzés az elasticsearch adatbázisba
 	elasticsearch {
 		codec => "plain"
 		hosts => "localhost"
 		index => "logstash-%{+YYYY.MM.dd}"
 	}
-	
+	#másrészt debug célból a képernyőre
 	stdout {
 		codec => "rubydebug"
 	}
