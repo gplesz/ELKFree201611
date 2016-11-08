@@ -119,9 +119,14 @@ Ezt követően engedélyezzük a lapátoló plugint, ami az üzeneteket az egyik
 **rabbitmq-plugins enable rabbitmq_shovel_management** (engedélyezzük a plugin adminisztrációját)
 
 
+Készítünk az app szerveren egy **app-logging-exchange** nevű exchange-et, illetve egy **app-logging-queue** nevű üzenetsort. Majd összekötjük őket: az exchange-bindingok közé felveszünk egyet ami az app-logging-queue-ra mutat, és a routing key #. Ez azt jelenti, hogy mindenféle hezitálás és vizsgálat nékül ami az exchange-be érkezik az átkerül a queue-ba.
 
+#### A két queue összekötése
 
+Az APP szerveren készítünk egy lapátot (admin/shovel management menüpont), ami áttolja az üzeneteket az ELK szerver queue-jába. A shovel adatai:
 
+forrás url: amqp://netacademia:neta@localhost, forrás queue: app-logging-queue
+cél url: amqp://netacademia:neta@192.168.147.129, cél queue: app-logging-queue-central
 
 
 
