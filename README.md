@@ -68,7 +68,7 @@ telepítjük a curl-t: **cinst curl** majd: **curl http://localhost:9200** és v
 }
 ```
 
-Az ElasticSearch egy 2.3.1, amit a chocolatey feltesz. A [legújabb itt most az 5.0](https://www.elastic.co/downloads/elasticsearch), letölt, kicsomagol, futtat. Kell neki JAVA, JAVA_HOME beállítás és ennyi.
+Az ElasticSearch verziószáma, amit most a chocolatey feltesz 2.3.1. A [legújabb itt most az 5.0](https://www.elastic.co/downloads/elasticsearch), letölt, kicsomagol, futtat. Kell neki JAVA környezet telepítve, illetve **JAVA_HOME** beállítás és ennyi.
 
 A kezeléséhez plugin-t lehet telepíteni. Például a [kopf](https://github.com/lmenezes/elasticsearch-kopf) és a [HQ](http://www.elastichq.org/).
 
