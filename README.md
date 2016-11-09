@@ -7,9 +7,9 @@ Ezen az ábrán látható, hogy a tanfolyamon milyen infrastruktúrát fogunk fe
 ![](images/attekintes.png?raw=true)
 
 
-Az **ELK** nevű gépen telepítünk egy *ElasticSearch* szervert, egy *RabbitMQ* üzenetsort, és a kettőt összekötjük egy megfelelő *Logstash* konfigurációval, annak érdekében, hogy az üzenetsorba beérkező csomagok az ElasticSerch adatbázisába kerüljenek a megfelelő konverziót követően. Ezek után telepítünk egy *Kibana* webalkalmazást, hogy az ElasticSearch által tárolt adatokat meg tudjuk jeleníteni.
+Az **ELK** nevű gépen telepítünk egy *ElasticSearch* szervert, egy *RabbitMQ* üzenetsort, és a kettőt összekötjük egy megfelelő *Logstash* konfigurációval, annak érdekében, hogy az üzenetsorba beérkező csomagok az ElasticSearch adatbázisába kerüljenek a megfelelő konverziót követően. Ezek után telepítünk egy *Kibana* webalkalmazást, hogy az ElasticSearch által tárolt adatokat meg tudjuk jeleníteni.
 
-Az **APP** nevű gépre talapítünk egy RabbitMQ postát (exchange) és üzenetsort, majd konfiguráljuk annak érdekében, hogy ami üzenet megérkezik a postára, az átkerüljön az **ELK** szerverünk üzenetsorába, ahonnan már megy a folyamat az ElasticSearch felé.     
+Az **APP** nevű gépre telepítünk egy RabbitMQ postát (exchange) és üzenetsort, majd konfiguráljuk annak érdekében, hogy ami üzenet megérkezik a postára, az átkerüljön az **ELK** szerverünk üzenetsorába, ahonnan már megy a folyamat az ElasticSearch felé.     
 
 ## Videók
 A tanfolyam videóit [itt lehet elérni](http://www.netacademia.hu/ELSfree-elastic-search--nutshell). A **letöltések** sávra kell kattintani, és megjelennek a videók.
@@ -26,8 +26,8 @@ A VMWare Windows 10-re telepítéséhez lehet, hogy  [le kell tiltani a Credenti
 ### Kicsomagolás, stb. 
 A letöltött virtuális gépeket kicsomagoljuk, és a Windows-osból másolunk egy másodikat. A .vmx állományra kattintunk mindegyik könyvtárban (w2k12r2-1, w2k12r2-2, UbuntuBase64), így elindul a három virtuális gép. (A VMWare player telepítve kell, hogy legyen a gépen) Az egyik Windows-os gépünk neve legyen ELK a másiké APP.
 
-Belépés a windows szerverekbe: Administrator jelszó: Windows2012
-Belépés a Ubuntu szerverre: név: netacademia, jelszó: neta
+Belépés a windows szerverekbe: **Administrator** jelszó: **Windows2012**
+Belépés a Ubuntu szerverre: név: **netacademia**, jelszó: **neta**
 
 ### Csomagkezelő
 Csomagkezelőt telepítünk: [chocolatey.org](https://chocolatey.org/)
