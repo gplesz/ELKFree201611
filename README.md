@@ -141,7 +141,7 @@ telepítés: **cinst logstash**
 a c:\logstash könyvtárba kerül eztán. Itt a .\bin könyvtárban van a futtató logstash.bat, és a .\conf.d-ben pedig a konfiguráció.
 
 
-A bin könyvtárban állva a ologstash -f ..\conf.d\neta.conf paranccsal indítottuk el, és a neta.conf állomány tartalma a következő:
+A bin könyvtárban állva a **logstash -f ..\conf.d\neta.conf** paranccsal indítottuk el, és a neta.conf állomány tartalma a következő:
 
 ```
 #a bemenet definíciója, ami RabbitMQ-ból jön
@@ -190,17 +190,17 @@ Telepítés: **cinst Kibana**
 
 konfiguráció: C:\ProgramData\chocolatey\lib\kibana\kibana-4.5.4-windows\config\kibana.yml
 
-Kibana szervízként telepítése (Az [NSSM](https://nssm.cc/)-et használjuk, hogy szervizként tudjunk egy batch file-t indítani):
+A Kibana egy [nyílt forráskódú](https://github.com/elastic/kibana) [SPA](https://en.wikipedia.org/wiki/Single-page_application) webalkalmazás (ami [AngularJS](https://angularjs.org/) keretrendszert használ), a futtatásához elvileg webszerver kell. Gyakorlatban azonban saját magát ki tudja szolgálni, ehhez van egy futtató .bat állomány a windows telepítésben.
 
-**nssm install Kibana**
+A Kibana szervízként telepítéséhez az [NSSM](https://nssm.cc/)-et használjuk, hogy szervizként tudjunk egy batch file-t indítani:
 
-majd a **Path** mezőbe: **C:\ProgramData\chocolatey\lib\kibana\kibana-4.5.4-windows\bin\kibana.bat**
+**nssm install Kibana** (Ezzel létrehozunk egy Kibana nevű windows szervizt, egyelőre további részleteket nem mondunk)
 
-majd elindítjuk a szervizt: **nssm start Kibana**
+majd a feljövő dialógusablakban a  **Path** mezőbe kikeressük ezt: **C:\ProgramData\chocolatey\lib\kibana\kibana-4.5.4-windows\bin\kibana.bat** és le OK-zzuk. Ez létrehozza a szervizünket, amit meg is tudunk nézni a windows szervizek között.
 
-És itt hozzá is férünk az alkalmazáshoz:
+Ez után majd elindítjuk a szervizt: **nssm start Kibana**
 
-http://localhost:5601
+És itt hozzá is férünk az alkalmazáshoz: http://localhost:5601
 
-Itt létre kell hoznunk a Kibana beállításait rögzítő elasticsearch "indexet", ami ha mindent jól csináltunk, akkor egy zöld Create gomb megnyomásával elkészül. Ezt követően a Discover menüpont használatával látjuk a naplóbejegyzéseket.
+A megjelenő oldalon létre kell hoznunk a Kibana beállításait rögzítő elasticsearch "indexet", ami ha mindent jól csináltunk, akkor egy zöld Create gomb megnyomásával elkészül. Ezt követően a Discover menüpont használatával látjuk a naplóbejegyzéseket.
 
