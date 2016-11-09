@@ -1,6 +1,20 @@
 # ELKFree201611
-NetAcademia ElasticSearch (+RabbitMQ) ingyenes tanfolyami oldal
+NetAcademia ElasticSearch (+RabbitMQ) ingyenes bevezető tanfolyam kódtár kiegészítése
 
+## Áttekintés
+Ezen az ábrán látható, hogy a tanfolyamon milyen infrastruktúrát fogunk felépíteni.
+
+![](images/attekintes.png?raw=true)
+
+
+Az **ELK** nevű gépen telepítünk egy *ElasticSearch* szervert, egy *RabbitMQ* üzenetsort, és a kettőt összekötjük egy megfelelő *Logstash* konfigurációval, annak érdekében, hogy az üzenetsorba beérkező csomagok az ElasticSerch adatbázisába kerüljenek a megfelelő konverziót követően. Ezek után telepítünk egy *Kibana* webalkalmazást, hogy az ElasticSearch által tárolt adatokat meg tudjuk jeleníteni.
+
+Az **APP** nevű gépre talapítünk egy RabbitMQ postát (exchange) és üzenetsort, majd konfiguráljuk annak érdekében, hogy ami üzenet megérkezik a postára, az átkerüljön az **ELK** szerverünk üzenetsorába, ahonnan már megy a folyamat az ElasticSearch felé.     
+
+## Videók
+A tanfolyam videóit [itt lehet elérni](http://www.netacademia.hu/ELSfree-elastic-search--nutshell). A **letöltések** sávra kell kattintani, és megjelennek a videók.
+
+## Előkészületek
 A virtuális gépeket [innen lehet letölteni](https://mega.nz/#F!7kpAECpb!Tl_a6DBqiwDfo7InEtox_Q). Itt egy Windows és egy Linux (Ubuntu64) virtuális gép található. A Windows-ból majd kettőt fogunk használni, illetve egy Ubuntu szervert.
 
 Alternatív letöltési lehetőség az Azure-ról: [Ubuntu64](https://vidibitstorage.blob.core.windows.net/elsfree/UbuntuBase64.rar) és [Widows](https://vidibitstorage.blob.core.windows.net/elsfree/w2k12r2-1.rar)
@@ -9,9 +23,8 @@ A használathoz a VMWare ingyenes Player kell, amit [innen lehet letölteni](htt
 
 A VMWare Windows 10-re telepítéséhez lehet, hogy  [le kell tiltani a Credential Guard/Device Guard](https://kb.vmware.com/selfservice/microsites/search.do?language=en_US&cmd=displayKC&externalId=2146361) nevű szolgáltatást. Részletes leírás a linken.
 
-## Előkészületek
 ### Kicsomagolás, stb. 
-A letöltött virtuális gépeket kicsomagoljuk, és a Windows-osból másolunk egy másodikat. A .vmx állományra kattintunk mindegyik könyvtárban (w2k12r2-1, w2k12r2-2, UbuntuBase64), így elindul a három virtuális gép. (A VMWare player telepítve kell, hogy legyen a gépen)
+A letöltött virtuális gépeket kicsomagoljuk, és a Windows-osból másolunk egy másodikat. A .vmx állományra kattintunk mindegyik könyvtárban (w2k12r2-1, w2k12r2-2, UbuntuBase64), így elindul a három virtuális gép. (A VMWare player telepítve kell, hogy legyen a gépen) Az egyik Windows-os gépünk neve legyen ELK a másiké APP.
 
 Belépés a windows szerverekbe: Administrator jelszó: Windows2012
 Belépés a Ubuntu szerverre: név: netacademia, jelszó: neta
@@ -23,19 +36,19 @@ Telepítéshez ezt másoljuk a vágólapra az oldalról:
 
 **@powershell -NoProfile -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"**
 
-### ElsaticSearch Szerver
-telepítünk [elasticsearch](https://www.elastic.co/) szervert az ELK szerverünkre.
-Az elasticsearch [nyílt forráskódú](https://github.com/elastic/elasticsearch) java-ban készült document szerver. [Lucene-re épül az adatbázis](http://lucene.apache.org/core/), a teljes szöveges keresésre optimalizálva.
+## ElsaticSearch Szerver
+Telepítünk egy [ElasticSearch](https://www.elastic.co/) szervert az ELK szerverünkre.
+Az elasticsearch [nyílt forráskódú](https://github.com/elastic/elasticsearch) java-ban készült documentum adatbázis szerver. A [Lucene](http://lucene.apache.org/core/) projektre épül, a teljes szöveges keresésre optimalizálva. Néhány példa a használatára.
 
-[GitHub teljes szöveges keresése ebben zajlik](http://www.elasticsearch.org/case-study/github/)
+- [GitHub teljes szöveges keresése ebben zajlik](http://www.elasticsearch.org/case-study/github/)
 
-[A Legnépszerűbb teljes szöveges keresésre használt adatbázismotor](http://db-engines.com/en/blog_post//55)
+- [A Legnépszerűbb teljes szöveges keresésre használt adatbázismotor](http://db-engines.com/en/blog_post//55)
 
-[A Microsoft is használja az MSN-en, másodpercenként 24.000 kérést szolgál ki](https://www.elastic.co/elasticon/2015/sf/powering-real-time-search-at-microsoft)
+- [A Microsoft is használja az MSN-en, másodpercenként 24.000 kérést szolgál ki](https://www.elastic.co/elasticon/2015/sf/powering-real-time-search-at-microsoft)
 
-[Egy cikk a .NET-es alkalmazásfejlesztésről ElasticSearch alapokon](https://www.simple-talk.com/dotnet/net-development/how-to-build-a-search-page-with-elasticsearch-and-net/)
+- [Egy cikk a .NET-es alkalmazásfejlesztésről ElasticSearch alapokon](https://www.simple-talk.com/dotnet/net-development/how-to-build-a-search-page-with-elasticsearch-and-net/)
 
-[A NetAcademia blogon meg találhatók ezek linkek is](http://netacademia.blog.hu/tags/ElasticSearch)
+- [A NetAcademia blogon meg találhatók ezek linkek is](http://netacademia.blog.hu/tags/ElasticSearch)
 
 A telepítés a chocolatey csomagkezelővel a következő (Adminisztrátori parancssorból): **cinst elasticsearch**
 
@@ -43,9 +56,13 @@ Telepítés után be kell állítani a **JAVA_HOME** környezeti változót, adm
 
 **setx JAVA_HOME "C:\Program Files\Java\jre1.8.0_111" /M**
 
-Amit még érdemes elmondani: mivel java, fut windowson, linuxon, osx-en. Nagyon jól skálázható: több száz gépes fürtöket is használnak probléma nélkül. Alapértelmezésben elindul, és kiszolgál minket a localhost:9200-on.
+Amit még érdemes elmondani: mivel java, fut windowson, linuxon, osx-en. Nagyon jól skálázható: több száz gépes fürtöket is használnak probléma nélkül. Ha nem állítunk semmit, csak elindítjuk, alapértelmezésekkel elindul, és kiszolgál minket a localhost:9200-on.
 
-A beállításai itt találhatóak: C:\ProgramData\chocolatey\lib\elasticsearch\tools\elasticsearch-2.3.1\config\elasticsearch.yml és logging.yml.
+A beállításai itt találhatóak: 
+
+- C:\ProgramData\chocolatey\lib\elasticsearch\tools\elasticsearch-2.3.1\config\elasticsearch.yml 
+és
+- C:\ProgramData\chocolatey\lib\elasticsearch\tools\elasticsearch-2.3.1\config\logging.yml
 
 ezt megnyitni leginkább notepad++-ból érdemes: **cinst notepadplusplus**
 
@@ -76,7 +93,8 @@ Telepítésük:
 
 Elnavigálunk az Elasticsearch bin könyvtárába: C:\ProgramData\chocolatey\lib\elasticsearch\tools\elasticsearch-2.3.1\bin majd kérünk egy cmd-t. Itt pedig: **plugin install lmenezes/elasticsearch-kopf** telepíti a Kopf-ot, a **plugin install royrusso/elasticsearch-HQ** telepíti a HQ-t. Elérni itt lehet őket: [kopf](http://localhost:9200/_plugin/kopf) illetve [HQ](http://localhost:9200/_plugin/HQ)
 
-### RabbitMQ
+## RabbitMQ
+### Telepítés
  - [link](https://www.rabbitmq.com)
  - [Gyors tutorial](https://www.rabbitmq.com/tutorials/tutorial-four-python.html)
 
@@ -122,7 +140,7 @@ Ezt követően engedélyezzük a lapátoló plugint, ami az üzeneteket az egyik
 
 Készítünk az app szerveren egy **app-logging-exchange** nevű exchange-et, illetve egy **app-logging-queue** nevű üzenetsort. Majd összekötjük őket: az **exchange-bindingok** közé felveszünk egyet ami az **app-logging-queue**-ra mutat, és a routing key **#**. Ez azt jelenti, hogy mindenféle hezitálás és vizsgálat nékül ami az exchange-be érkezik az átkerül a queue-ba.
 
-#### A két queue összekötése
+### A két queue összekötése
 
 Az APP szerveren készítünk egy lapátot (admin/shovel management menüpont), ami áttolja az üzeneteket az ELK szerver queue-jába. A shovel adatai:
 
@@ -133,7 +151,7 @@ Végül az ELK szerver tűzfalán engedélyezzük az 5672-es TCP portot:
 
 **netsh advfirewall firewall add rule name="Open Port 5672" dir=in action=allow protocol=TCP localport=5672**
 
-### LogStash
+## LogStash
 [link](https://www.elastic.co/products/logstash)
 
 telepítés: **cinst logstash**
@@ -142,6 +160,8 @@ a c:\logstash könyvtárba kerül eztán. Itt a .\bin könyvtárban van a futtat
 
 
 A bin könyvtárban állva a **logstash -f ..\conf.d\neta.conf** paranccsal indítottuk el, és a neta.conf állomány tartalma a következő:
+
+### Konfiguráció
 
 ```
 #a bemenet definíciója, ami RabbitMQ-ból jön
@@ -183,7 +203,7 @@ output {
 }
 
 ```
-### Kibana
+## Kibana
 [link](https://www.elastic.co/products/kibana)
 
 Telepítés: **cinst Kibana**
