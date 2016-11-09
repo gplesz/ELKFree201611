@@ -9,8 +9,6 @@ A használathoz a VMWare ingyenes Player kell, amit [innen lehet letölteni](htt
 
 A VMWare Windows 10-re telepítéséhez lehet, hogy  [le kell tiltani a Credential Guard/Device Guard](https://kb.vmware.com/selfservice/microsites/search.do?language=en_US&cmd=displayKC&externalId=2146361) nevű szolgáltatást. Részletes leírás a linken.
 
-Délelőtt még erről itt egy részletes leírást készítek, hogy a 13:00-as kezdésre mindenki fel tudjon készülni.
-
 ## Előkészületek
 ### Kicsomagolás, stb. 
 A letöltött virtuális gépeket kicsomagoljuk, és a Windows-osból másolunk egy másodikat. A .vmx állományra kattintunk mindegyik könyvtárban (w2k12r2-1, w2k12r2-2, UbuntuBase64), így elindul a három virtuális gép. (A VMWare player telepítve kell, hogy legyen a gépen)
