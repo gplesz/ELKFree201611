@@ -104,33 +104,32 @@ De ahhoz, hogy használjuk, kell felhasználó is:
 
 Ide navigálunk: **C:\Program Files\RabbitMQ Server\rabbitmq_server-3.6.5\sbin** majd a következő parancsokat adjuk:
 
-**rabbitmqctl add_user netacademia neta** (felveszünk egy felhasználót)
-**rabbitmqctl set_user_tags netacademia administrator** (a felhasználót adminisztrátorrá tesszük)
-**rabbitmqctl set_permissions -p / netacademia ".*" ".*" ".*"** (engedélyezzük a gyökér virtuális könyvtárat)
+ **rabbitmqctl add_user netacademia neta** (felveszünk egy netacademia felhasználót neta jelszóval)
+ **rabbitmqctl set_user_tags netacademia administrator** (a felvitt felhasználót adminisztrátorrá tesszük)
+ **rabbitmqctl set_permissions -p / netacademia ".*" ".*" ".*"** (engedélyezzük a gyökér virtuális könyvtárat)
 
 Ezzel be tudunk lépni a felületről az előző linken neacademia/neta név/jelszó párral. Majd készítünk egy queue-t alapértelmezett értékekkel, ezzel a névvel: **app-logging-queue-central**
 
 Az APP szerverünkön is telepítünk egy RabbitMQ szervert (**cinst rabbitmq**), majd ott is felvesszük ugyanazt a felhasználót és jogot adunk neki.
 
-**rabbitmqctl add_user netacademia neta** (felveszünk egy felhasználót)
-**rabbitmqctl set_user_tags netacademia administrator** (a felhasználót adminisztrátorrá tesszük)
-**rabbitmqctl set_permissions -p / netacademia ".*" ".*" ".*"** (engedélyezzük a gyökér virtuális könyvtárat)
+ **rabbitmqctl add_user netacademia neta** (felveszünk egy felhasználót)
+ **rabbitmqctl set_user_tags netacademia administrator** (a felhasználót adminisztrátorrá tesszük)
+ **rabbitmqctl set_permissions -p / netacademia ".*" ".*" ".*"** (engedélyezzük a gyökér virtuális könyvtárat)
 
 Ezt követően engedélyezzük a lapátoló plugint, ami az üzeneteket az egyik queue-ból egy másik queue-ba továbbítja. 
 
-**rabbitmq-plugins enable rabbitmq_shovel** (engedélyezzük a lapátoló [shovel](https://www.rabbitmq.com/shovel-dynamic.html) plugint)
-**rabbitmq-plugins enable rabbitmq_shovel_management** (engedélyezzük a plugin adminisztrációját)
+ **rabbitmq-plugins enable rabbitmq_shovel** (engedélyezzük a lapátoló [shovel](https://www.rabbitmq.com/shovel-dynamic.html) plugint)
+ **rabbitmq-plugins enable rabbitmq_shovel_management** (engedélyezzük a plugin adminisztrációját)
 
 
-Készítünk az app szerveren egy **app-logging-exchange** nevű exchange-et, illetve egy **app-logging-queue** nevű üzenetsort. Majd összekötjük őket: az exchange-bindingok közé felveszünk egyet ami az app-logging-queue-ra mutat, és a routing key #. Ez azt jelenti, hogy mindenféle hezitálás és vizsgálat nékül ami az exchange-be érkezik az átkerül a queue-ba.
+Készítünk az app szerveren egy **app-logging-exchange** nevű exchange-et, illetve egy **app-logging-queue** nevű üzenetsort. Majd összekötjük őket: az **exchange-bindingok** közé felveszünk egyet ami az **app-logging-queue**-ra mutat, és a routing key **#**. Ez azt jelenti, hogy mindenféle hezitálás és vizsgálat nékül ami az exchange-be érkezik az átkerül a queue-ba.
 
 #### A két queue összekötése
 
 Az APP szerveren készítünk egy lapátot (admin/shovel management menüpont), ami áttolja az üzeneteket az ELK szerver queue-jába. A shovel adatai:
 
-forrás url: **amqp://netacademia:neta@localhost**, forrás queue: **app-logging-queue**
-
-cél url: **amqp://netacademia:neta@192.168.147.129**, cél queue: **app-logging-queue-central**
+ - forrás url: **amqp://netacademia:neta@localhost**, forrás queue: **app-logging-queue**
+ - cél url: **amqp://netacademia:neta@192.168.147.129**, cél queue: **app-logging-queue-central**
 
 Végül az ELK szerver tűzfalán engedélyezzük az 5672-es TCP portot:
 
