@@ -11,7 +11,7 @@ Ha tetszik amit csinálunk, és valakit komolyabban érdekel valamilyen informat
  - [Fejlesztő leszek!](http://netacademia.hu/Fejleszt%C5%91%20leszek!)
  - [Legyél Te is HACKER!](http://netacademia.hu/Hacker%20leszek!)
 
-Érdemes rájuk nézni, összesen 109 tanfolyam elérhető nálunk [**éves előfizetéssel !!!**](http://netacademia.hu/Subscriptions) Ennek keretében *akár **valamennyi*** nálunk tartandó, vagy korábban megtartott és rögzített tanfolyamunkhoz hozzáférsz egy éven keresztül. Ennél jobb ajánlat egyszerűen nem lehetséges :) 
+Érdemes rájuk nézni, összesen 109 tanfolyam elérhető nálunk [**éves előfizetéssel !!!**](http://netacademia.hu/Subscriptions) Ennek keretében *akár* **valamennyi** nálunk tartandó, vagy korábban megtartott és rögzített tanfolyamunkhoz hozzáférsz egy éven keresztül. Ennél jobb ajánlat egyszerűen nem lehetséges :) 
 
 Nem kell mindent most eldönteni. Vannak [ingyenes tanfolyamaink](http://www.netacademia.hu/), vess rájuk egy pillantást. A folyamatosan frissülő [blogunkon](http://netacademia.blog.hu/) pedig sok érdekes szakmai információt találsz.
 ```
