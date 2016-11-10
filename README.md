@@ -6,10 +6,29 @@ Ezen az ábrán látható, hogy a tanfolyamon milyen infrastruktúrát fogunk fe
 
 ![](images/attekintes.png?raw=true)
 
+### Első alkalom: infrastruktúra kialakítása
 
-Az **ELK** nevű gépen telepítünk egy *ElasticSearch* szervert, egy *RabbitMQ* üzenetsort, és a kettőt összekötjük egy megfelelő *Logstash* konfigurációval, annak érdekében, hogy az üzenetsorba beérkező csomagok az ElasticSearch adatbázisába kerüljenek a megfelelő konverziót követően. Ezek után telepítünk egy *Kibana* webalkalmazást, hogy az ElasticSearch által tárolt adatokat meg tudjuk jeleníteni.
+ - Az **ELK** nevű gépen telepítünk egy *ElasticSearch* szervert, 
+ - egy *RabbitMQ* üzenetsort, 
+ - és a kettőt összekötjük egy megfelelő *Logstash* konfigurációval, annak érdekében, hogy az üzenetsorba beérkező csomagok az ElasticSearch adatbázisába kerüljenek a megfelelő konverziót követően. 
 
-Az **APP** nevű gépre telepítünk egy RabbitMQ postát (exchange) és üzenetsort, majd konfiguráljuk annak érdekében, hogy ami üzenet megérkezik a postára, az átkerüljön az **ELK** szerverünk üzenetsorába, ahonnan már megy a folyamat az ElasticSearch felé.     
+ - Az **APP** nevű gépre telepítünk egy RabbitMQ postát (exchange) és üzenetsort (message queue), 
+ - majd konfiguráljuk annak érdekében, hogy ami üzenet megérkezik a postára, az átkerüljön az **ELK** szerverünk üzenetsorába, ahonnan már megy a folyamat az ElasticSearch felé.
+
+ - Végül az **ELK**-n telepítünk egy *Kibana* webalkalmazást, hogy az ElasticSearch által tárolt adatokat meg tudjuk jeleníteni.     
+
+### Második alkalom: linux illetve az infrastruktúra használatba vétele
+- Telepítünk linuxon ElasticSearch-öt, Logstash-t és Kibana-t, 
+- majd az **APP** szerverről erre a gépre is küldünk naplót.
+
+- készítnk tesztalkalmazást, amivel jó sok naplót tudunk generálni.
+- begyűjtünk windows naplót
+
+- A Logstash beállításait ennek megfelelően módosítjuk, hogy a naplók egyben kezelhetők legyenek.
+- a Kibana lehetőségeit felfedezzük, 
+- és készítünk néhány valóban szép és hasznos diagramot.
+
+- (opcionális) begyűjtünk IIS naplót
 
 ## Videók
 A tanfolyam videóit [itt lehet elérni](http://www.netacademia.hu/ELSfree-elastic-search--nutshell). A **letöltések** sávra kell kattintani, és megjelennek a videók.
@@ -24,13 +43,13 @@ A használathoz a VMWare ingyenes Player kell, amit [innen lehet letölteni](htt
 A VMWare Windows 10-re telepítéséhez lehet, hogy  [le kell tiltani a Credential Guard/Device Guard](https://kb.vmware.com/selfservice/microsites/search.do?language=en_US&cmd=displayKC&externalId=2146361) nevű szolgáltatást. Részletes leírás a linken.
 
 ### Kicsomagolás, stb. 
-A letöltött virtuális gépeket kicsomagoljuk, és a Windows-osból másolunk egy másodikat. A .vmx állományra kattintunk mindegyik könyvtárban (w2k12r2-1, w2k12r2-2, UbuntuBase64), így elindul a három virtuális gép. (A VMWare player telepítve kell, hogy legyen a gépen) Az egyik Windows-os gépünk neve legyen ELK a másiké APP.
+A letöltött virtuális gépeket kicsomagoljuk, és a Windows-osból másolunk egy másodikat. A .vmx állományra kattintunk mindegyik könyvtárban (w2k12r2-1, w2k12r2-2, UbuntuBase64), így elindul a három virtuális gép. (A VMWare player telepítve kell, hogy legyen a gépen) A könnyebb hivatkozás érdekében az egyik Windows-os gépünk neve legyen **ELK** a másiké **APP**.
 
 Belépés a windows szerverekbe: **Administrator** jelszó: **Windows2012**
 Belépés a Ubuntu szerverre: név: **netacademia**, jelszó: **neta**
 
 ### Csomagkezelő
-Csomagkezelőt telepítünk: [chocolatey.org](https://chocolatey.org/)
+[Csomagkezelőt](http://netacademia.blog.hu/2016/11/03/hogyan_keszitsunk_chocolatey_csomagot_az_alkalmazasunkhoz) telepítünk: [chocolatey.org](https://chocolatey.org/)
 
 Telepítéshez ezt másoljuk a vágólapra az oldalról: 
 
