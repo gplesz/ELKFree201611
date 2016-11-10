@@ -1,6 +1,24 @@
 # ELKFree201611
 NetAcademia ElasticSearch (+RabbitMQ) ingyenes bevezető tanfolyam kódtár kiegészítése
 
+```
+<reklám>
+```
+Ha tetszik amit csinálunk, és valakit komolyabban érdekel valamilyen informatikai terület, akkor nálunk jó helyen jár. Négy fő csapásirányra osztottuk a tanulnivalókat, ezek a következők:
+
+ - [Webfejlesztő leszek!](http://netacademia.hu/Webfejleszt%C5%91%20leszek!)
+ - [Rendszergazda leszek!](http://netacademia.hu/Rendszergazda%20leszek!)
+ - [Fejlesztő leszek!](http://netacademia.hu/Fejleszt%C5%91%20leszek!)
+ - [Legyél Te is HACKER!](http://netacademia.hu/Hacker%20leszek!)
+
+Érdemes rájuk nézni, összesen 109 tanfolyam elérhető nálunk [**éves előfizetéssel !!!**](http://netacademia.hu/Subscriptions) Ennek keretében *akár **valamennyi*** nálunk tartandó, vagy korábban megtartott és rögzített tanfolyamunkhoz hozzáférsz egy éven keresztül. Ennél jobb ajánlat egyszerűen nem lehetséges :) 
+
+Nem kell mindent most eldönteni. Vannak [ingyenes tanfolyamaink](http://www.netacademia.hu/), vess rájuk egy pillantást. A folyamatosan frissülő [blogunkon](http://netacademia.blog.hu/) pedig sok érdekes szakmai információt találsz.
+```
+</reklám>
+```
+
+
 ## Áttekintés
 Ezen az ábrán látható, hogy a tanfolyamon milyen infrastruktúrát fogunk felépíteni.
 
