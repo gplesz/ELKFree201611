@@ -49,7 +49,7 @@ Ezen az ábrán látható, hogy a tanfolyamon milyen infrastruktúrát fogunk fe
 - (opcionális) begyűjtünk IIS naplót
 
 ## Videók
-A tanfolyam videóit [itt lehet elérni](http://www.netacademia.hu/ELSfree-elastic-search--nutshell). A **letöltések** sávra kell kattintani, és megjelennek a videók.
+A tanfolyam videóit [itt lehet elérni](http://www.netacademia.hu/ELSfree-elastic-search--nutshell). 
 
 ## Előkészületek
 A virtuális gépeket [innen lehet letölteni](https://mega.nz/#F!7kpAECpb!Tl_a6DBqiwDfo7InEtox_Q). Itt egy Windows és egy Linux (Ubuntu64) virtuális gép található. A Windows-ból majd kettőt fogunk használni, illetve egy Ubuntu szervert.
